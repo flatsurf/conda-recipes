@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "project": "$GITHUB_REPOSITORY",
+  "project_url": "https://github.com/$GITHUB_ORGANIZATION/$GITHUB_REPOSITORY",
+  "show_commit_url": "https://github.com/$GITHUB_ORGANIZATION/$GITHUB_REPOSITORY/commit/",
+  "repo": ".",
+  "environment_type": "conda",
+  "matrix": {
+    "libtool": [],
+    "make": [],
+    "automake": [],
+    "Cython": [],
+    "boost-cpp": [],
+    "e-antic": [],
+    "arb": [],
+    "gmp": [],
+    "gtest": [],
+    "benchmark==1.5.0": []
+  },
+  "conda_channels": ["flatsurf", "conda-forge", "default"],
+  "build_command": [
+    "$SNIPPETS_DIR/autoconf/run.sh",
+    "make"
+  ],
+  "install_command": [],
+  "uninstall_command": [],
+  "benchmark_dir": "asv",
+  "env_dir": ".asv/env",
+  "results_dir": ".asv/results",
+  "html_dir": ".asv/html"
+}
+
