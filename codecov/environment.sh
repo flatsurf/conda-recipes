@@ -10,7 +10,7 @@ oldstate="$(set +o); set -$-"
 # /tmp/secrets contains CI-injected credentials until
 # https://github.com/conda/conda-build/pull/3753 is ready
 set +x
-source /tmp/secrets || true
+CODECOV_TOKEN=$(source /tmp/secrets || true; echo $CODECOV_TOKEN)
 
 if [ ${#CODECOV_TOKEN} = 36 ];then
   echo "${CODECOV_TOKEN}" > ~/.codecov.token

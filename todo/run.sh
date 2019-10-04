@@ -6,6 +6,11 @@ set -exo pipefail
 # turned into issues instead.)
 # ##################################################################
 
+# Ignore TODOs unless checking for style
+if [[ "x$build_flavour" != "xstyle" ]]; then
+  exit 0
+fi
+
 # Ignore submodules
 git submodule foreach git clean -fd
 git submodule foreach git reset --hard

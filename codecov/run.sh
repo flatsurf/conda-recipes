@@ -5,6 +5,11 @@ set -exo pipefail
 # Push coverage data to codecov.io
 # ##################################################################
 
+# Report for coverage enabled builds
+if [[ "x$build_flavour" != "xcoverage" ]]; then
+  exit 0
+fi
+
 # Install gcov
 conda install -y --quiet gcc_linux-64
 
@@ -17,4 +22,3 @@ git checkout -b master
 git branch -u origin/master
 
 bash <(curl -s https://codecov.io/bash) $CODECOV_FLAGS -R `pwd` -x `which x86_64-conda_cos6-linux-gnu-gcov` -a '\-lrp' -p .
-

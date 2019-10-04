@@ -5,6 +5,11 @@ set -exo pipefail
 # Run Airspeed Velocity and publish the results as github-pages
 # ##################################################################
 
+# Run benchmarks on each release build
+if [[ "x$build_flavour" != "xrelease" ]]; then
+  exit 0
+fi
+
 git config --global user.name 'CI Benchmark'
 git config --global user.email 'benchmark@ci.invalid'
 git config --global push.default nothing
@@ -32,13 +37,13 @@ pushd .asv/results
 git add .
 git commit -m "Added benchmark run"
 unset SSH_AUTH_SOCK
-if test "x$ASV_SECRET_KEY" = "xyes"; then
+if [[ "x$ASV_SECRET_KEY" == "xyes" ]]; then
   git push origin master:master
 fi
 popd
 
 asv gh-pages --no-push
-if test "x$ASV_SECRET_KEY" = "xyes"; then
+if [[ "x$ASV_SECRET_KEY" == "xyes" ]]; then
   # We cannot push to origin since the outer repository has been cloned with
   # https://github.com/…
   git push $ASV_GITHUB_REPOSITORY gh-pages:gh-pages -f

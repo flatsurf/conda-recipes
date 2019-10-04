@@ -5,6 +5,11 @@ set -exo pipefail
 # Run make, make check and friends
 # ##################################################################
 
+# Style checks finish quickly without any building
+if [[ "x$build_flavour" == "xstyle" ]]; then
+  exit 0
+fi
+
 # Build everything
 make CXXFLAGS="$CXXFLAGS $EXTRA_CXXFLAGS"
 
@@ -12,7 +17,7 @@ make CXXFLAGS="$CXXFLAGS $EXTRA_CXXFLAGS"
 make check CXXFLAGS="$CXXFLAGS $EXTRA_CXXFLAGS" || (cat */test/test-suite*.log; false)
 
 # Run additional tests (might be too slow on non-release builds.)
-if [[ "x$build_flavour" == "x" ]]; then
+if [[ "x$build_flavour" == "xrelease" ]]; then
     for subdir in ${SUBDIRS//:/$IFS}; do
         pushd $subdir
         make check-valgrind || (cat test/test-suite*.log; false)

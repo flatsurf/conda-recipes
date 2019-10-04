@@ -10,7 +10,7 @@ oldstate="$(set +o); set -$-"
 # /tmp/secrets contains CI-injected credentials until
 # https://github.com/conda/conda-build/pull/3753 is ready
 set +x
-source /tmp/secrets || true
+ASV_SECRET_KEY=$(source /tmp/secrets || true; echo $ASV_SECRET_KEY)
 
 # Currently, we are assuming that we only run on azure
 export CI=azure
