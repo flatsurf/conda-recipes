@@ -23,5 +23,5 @@ if [[ "x$build_flavour" == "xrelease" ]]; then
         make check-valgrind || (cat test/test-suite*.log; false)
         popd
     done
-    make distcheck
+    make distcheck || (cat `find -name test-suite.log`; false)
 fi
