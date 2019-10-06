@@ -14,13 +14,13 @@ fi
 make CXXFLAGS="$CXXFLAGS $EXTRA_CXXFLAGS"
 
 # Run all test cases
-make check CXXFLAGS="$CXXFLAGS $EXTRA_CXXFLAGS" || (cat */test/test-suite*.log; false)
+make check CXXFLAGS="$CXXFLAGS $EXTRA_CXXFLAGS" || (cat `find -name 'test-suite*.log'`; false)
 
 # Run additional tests (might be too slow on non-release builds.)
 if [[ "x$build_flavour" == "xrelease" ]]; then
     for subdir in ${SUBDIRS//:/$IFS}; do
         pushd $subdir
-        make check-valgrind || (cat test/test-suite*.log; false)
+        make check-valgrind || (cat `find -name 'test-suite*.log'`; false)
         popd
     done
     make distcheck || (cat `find -name test-suite.log`; false)
