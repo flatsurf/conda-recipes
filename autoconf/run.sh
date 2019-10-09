@@ -15,6 +15,14 @@ if [ -z $PREFIX ]; then
         false
 fi
 
+if [[ "$target" == "style" ]]; then
+        exit 0
+fi
+
+if [[ "$target" == "release" ]]; then
+        export CONFIGURE_FLAGS="$CONFIGURE_FLAGS --without-pytest --without-googletest"
+fi
+
 # Create Makefiles
 ./bootstrap
-./configure --prefix="$PREFIX" CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" CXX="$CXX" LDFLAGS="$LDFLAGS" CPPFLAGS="$CPPFLAGS" || (cat config.log; exit 1)
+./configure --prefix="$PREFIX" CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" CXX="$CXX" LDFLAGS="$LDFLAGS" CPPFLAGS="$CPPFLAGS" $CONFIGURE_FLAGS || (cat config.log; exit 1)

@@ -6,8 +6,7 @@ set -exo pipefail
 # turned into issues instead.)
 # ##################################################################
 
-# Ignore TODOs unless checking for style
-if [[ "x$build_flavour" != "xstyle" ]]; then
+if [[ "$target" != "style" ]]; then
   exit 0
 fi
 

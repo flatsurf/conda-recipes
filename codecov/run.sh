@@ -6,7 +6,7 @@ set -exo pipefail
 # ##################################################################
 
 # Report for coverage enabled builds
-if [[ "x$build_flavour" != "xcoverage" ]]; then
+if [[ "$target" != "coverage" ]]; then
   exit 0
 fi
 
