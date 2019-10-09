@@ -2,8 +2,9 @@
 # Work around https://github.com/conda/conda-build/pull/3765
 # ##########################################################
 
-mv $SRC_DIR/work $SRC_DIR/../real_work
-mv $SRC_DIR/* $SRC_DIR/../real_work/
-rmdir $SRC_DIR
-mv $SRC_DIR/../real_work $SRC_DIR
-cd `pwd`
+cd ..
+mv work/work real_work
+mv work/* real_work/
+rmdir work
+mv real_work work
+cd work
