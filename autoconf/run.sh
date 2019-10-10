@@ -20,7 +20,7 @@ if [[ "$target" == "style" ]]; then
 fi
 
 if [[ "$target" == "release" ]]; then
-        export CONFIGURE_FLAGS="$CONFIGURE_FLAGS --without-pytest --without-googletest"
+        export CONFIGURE_FLAGS="$CONFIGURE_FLAGS --without-pytest --without-googletest --without-sage"
 fi
 
 # Create Makefiles
