@@ -30,7 +30,7 @@ cp $SNIPPETS_DIR/asv/__init__.py asv
 # commits and refuses to generate graphs.
 git checkout -b master
 
-asv run --machine=$CI
+asv run -v --machine=$CI
 
 pushd .asv/results
 git add .
