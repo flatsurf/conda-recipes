@@ -18,9 +18,9 @@
 #  along with flatsurf. If not, see <https://www.gnu.org/licenses/>.
 #*********************************************************************
 
-# This module turn google (C++) benchmarks into a Python module that can be run
-# by AirSpeedVelocity which provides a nice web interface to see how benchmarks
-# perform over time.
+# This module turns google (C++) benchmarks into a Python module that can be
+# run by AirSpeedVelocity which provides a nice web interface to see how
+# benchmarks perform over time.
 
 # If you want to use this module, make sure NOT to add the conda-forge package
 # 'benchmark' (google benchmark) to your asv.conf.json matrix as that is a

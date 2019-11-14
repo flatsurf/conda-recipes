@@ -23,8 +23,8 @@ make check CXXFLAGS="$CXXFLAGS $EXTRA_CXXFLAGS" || (cat `find . -name 'test-suit
 if [[ "$target" == "test" ]]; then
     for subdir in ${SUBDIRS//:/$IFS}; do
         pushd $subdir
-        make check-valgrind || (cat `find . -name 'test-suite*.log'`; false)
+        make check-valgrind || (echo | cat `find . -name 'test-suite*.log'`; false)
         popd
     done
-    make distcheck || (cat `find . -name test-suite.log`; false)
+    make distcheck || (echo | cat `find . -name test-suite.log`; false)
 fi
