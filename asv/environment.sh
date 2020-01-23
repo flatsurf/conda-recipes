@@ -26,6 +26,7 @@ if [[ "$target" == "benchmark" ]];then
     export ASV_SECRET_KEY=yes
     export ASV_GITHUB_REPOSITORY="git@github.com:$GITHUB_ORGANIZATION/$GITHUB_REPOSITORY-asv.git"
   else
+    echo "ASV_SECRET_KEY not set. Not uploading to asv repository and GitHub pages."
     export ASV_SECRET_KEY=no
     export ASV_GITHUB_REPOSITORY="https://github.com/$GITHUB_ORGANIZATION/$GITHUB_REPOSITORY-asv.git"
   fi

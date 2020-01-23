@@ -18,6 +18,7 @@ if [[ "$target" == "coverage" ]]; then
     export CODECOV_TOKEN=yes
     export CODECOV_FLAGS="-t @$HOME/.codecov.token"
   else
+    echo "CODECOV_TOKEN not set. Not uploading to codecov."
     export CODECOV_TOKEN=no
     export CODECOV_FLAGS="-d"
   fi
