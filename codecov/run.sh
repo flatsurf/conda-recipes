@@ -21,4 +21,4 @@ git fetch origin
 git checkout -b master
 git branch -u origin/master
 
-bash <(curl -s https://codecov.io/bash) $CODECOV_FLAGS -y recipe/snippets/codecov/codecov.yml -R `pwd` -x `which x86_64-conda_cos6-linux-gnu-gcov` -a '\-lrp' -p .
+bash <(curl -s https://codecov.io/bash) $CODECOV_FLAGS -R `pwd` -x `which x86_64-conda_cos6-linux-gnu-gcov` -a '\-lrp' -p .
