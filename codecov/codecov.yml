@@ -1,3 +1,4 @@
 ignore:
-  - "benchmark/*"
-  - "**/benchmark/*"
+  - "^.*.benchmark.cc$"
+  - "^.*/benchmark/.*$"
+  - "^benchmark/.*$"
