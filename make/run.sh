@@ -17,14 +17,14 @@ case $target in
 esac
 
 # Run all test cases
-make check CXXFLAGS="$CXXFLAGS $EXTRA_CXXFLAGS" || (cat `find . -name 'test-suite*.log'`; false)
+make check CXXFLAGS="$CXXFLAGS $EXTRA_CXXFLAGS" || (cat `find . -name 'test-suite*.log'` /dev/null; false)
 
 # Run additional tests (might be too slow on non-release builds.)
 if [[ "$target" == "test" ]]; then
     for subdir in ${SUBDIRS//:/$IFS}; do
         pushd $subdir
-        make check-valgrind || (echo | cat `find . -name 'test-suite*.log'`; false)
+        make check-valgrind || (echo | cat `find . -name 'test-suite*.log'` /dev/null; false)
         popd
     done
-    make distcheck || (echo | cat `find . -name test-suite.log`; false)
+    make distcheck || (echo | cat `find . -name test-suite.log` /dev/null; false)
 fi
