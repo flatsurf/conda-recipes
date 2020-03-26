@@ -38,7 +38,7 @@ BENCHMARKS = {}
 PREFIX = "track_"
 
 os.chdir(ASV_BUILD_DIR)
-for benchmark in glob.glob('**/benchmark/') + glob.glob('benchmark/'):
+for benchmark in [os.path.abspath(path) for path in glob.glob('**/benchmark/') + glob.glob('benchmark/')]:
     os.system("echo 'Processing %s'"%benchmark)
     os.chdir(benchmark)
     subprocess.check_call(["make", "benchmark"])
