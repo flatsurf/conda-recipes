@@ -5,7 +5,7 @@
 # velocity
 # ##################################################################
 
-if [[ "$target" == "benchmark" ]];then
+if [[ "$action" == "benchmark" ]];then
   oldstate="$(set +o); set -$-"
   
   # Currently, we are assuming that we only run on azure

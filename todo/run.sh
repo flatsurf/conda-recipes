@@ -6,7 +6,7 @@ set -exo pipefail
 # turned into issues instead.)
 # ##################################################################
 
-if [[ "$target" != "style" ]]; then
+if [[ "$action" != "style" ]]; then
   exit 0
 fi
 

@@ -15,11 +15,11 @@ if [ -z $PREFIX ]; then
         false
 fi
 
-if [[ "$target" == "style" ]]; then
+if [[ "$action" == "style" ]]; then
         exit 0
 fi
 
-if [[ "$target" == "release" ]]; then
+if [[ "$action" == "release" ]]; then
         export CONFIGURE_FLAGS="$CONFIGURE_FLAGS --without-pytest --without-googletest --without-benchmark --without-sage"
 fi
 

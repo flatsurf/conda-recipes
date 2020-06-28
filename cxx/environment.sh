@@ -39,7 +39,7 @@ case `uname` in
         ;;
 esac
 
-if [[ "$target" == "coverage" ]]; then
+if [[ "$action" == "coverage" ]]; then
     export EXTRA_CXXFLAGS="--coverage"
 fi
 

@@ -5,14 +5,14 @@ set -exo pipefail
 # Run make, make check and friends
 # ##################################################################
 
-if [[ "$target" == "style" ]]; then
+if [[ "$action" == "style" ]]; then
   exit 0
 fi
 
 # Build everything
 make CXXFLAGS="$CXXFLAGS $EXTRA_CXXFLAGS"
 
-case $target in
+case $action in
   release|style|benchmark) exit 0;
 esac
 

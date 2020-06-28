@@ -5,7 +5,7 @@ set -exo pipefail
 # Make sure that the source is following our clang-format settings
 # ##################################################################
 
-if [[ "$target" != "style" ]]; then
+if [[ "$action" != "style" ]]; then
   exit 0
 fi
 

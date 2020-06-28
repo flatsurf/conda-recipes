@@ -5,7 +5,7 @@
 # uploads
 # ##################################################################
 
-if [[ "$target" == "coverage" ]]; then
+if [[ "$action" == "coverage" ]]; then
   oldstate="$(set +o); set -$-"
   
   set +x

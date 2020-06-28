@@ -5,7 +5,7 @@ set -exo pipefail
 # Run Airspeed Velocity and publish the results as github-pages
 # ##################################################################
 
-if [[ "$target" != "benchmark" ]]; then
+if [[ "$action" != "benchmark" ]]; then
   exit 0
 fi
 

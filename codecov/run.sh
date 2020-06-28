@@ -6,7 +6,7 @@ set -exo pipefail
 # ##################################################################
 
 # Report for coverage enabled builds
-if [[ "$target" != "coverage" ]]; then
+if [[ "$action" != "coverage" ]]; then
   exit 0
 fi
 
