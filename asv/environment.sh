@@ -8,11 +8,6 @@
 if [[ "$target" == "benchmark" ]];then
   oldstate="$(set +o); set -$-"
   
-  # /tmp/secrets contains CI-injected credentials until
-  # https://github.com/conda/conda-build/pull/3753 is ready
-  set +x
-  ASV_SECRET_KEY=$(source /tmp/secrets || true; echo $ASV_SECRET_KEY)
-  
   # Currently, we are assuming that we only run on azure
   export CI=azure
   
@@ -21,7 +16,9 @@ if [[ "$target" == "benchmark" ]];then
   # otherwise the old ssh implementation used here won't be able to make sense of it
   mkdir -p ~/.ssh
   
-  if echo "$ASV_SECRET_KEY" | base64 -d > ~/.ssh/id_rsa; then
+  set +x
+  if [[ "$ASV_SECRET_KEY" ]]; then
+    echo "$ASV_SECRET_KEY" | base64 -d > ~/.ssh/id_rsa
     chmod 400 ~/.ssh/id_rsa
     export ASV_SECRET_KEY=yes
     export ASV_GITHUB_REPOSITORY="git@github.com:$GITHUB_ORGANIZATION/$GITHUB_REPOSITORY-asv.git"
