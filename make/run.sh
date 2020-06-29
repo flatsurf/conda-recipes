@@ -28,3 +28,7 @@ if [[ "$target" == "test" ]]; then
     done
     make distcheck || (echo | cat `find . -name test-suite.log` /dev/null; false)
 fi
+
+if [[ $action == "release" ]]; then
+    make install CXXFLAGS="$CXXFLAGS $EXTRA_CXXFLAGS"
+fi
