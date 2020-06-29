@@ -23,9 +23,12 @@ case $action in
     # Run all test cases
     make check CXXFLAGS="$CXXFLAGS $EXTRA_CXXFLAGS" || (cat `find . -name 'test-suite*.log'` /dev/null; false)
     # Run additional tests (might be too slow on non-release builds.)
-    for subdir in ${SUBDIRS//:/$IFS}; do
+    TESTDIRS=${SUBDIRS:-.}
+    for subdir in ${TESTDIRS//:/$IFS}; do
         pushd $subdir
-        make check-valgrind || (echo | cat `find . -name 'test-suite*.log'` /dev/null; false)
+        if which valgrind; then
+            make check-valgrind || (echo | cat `find . -name 'test-suite*.log'` /dev/null; false)
+        fi
         popd
     done
     make distcheck || (echo | cat `find . -name test-suite.log` /dev/null; false)
