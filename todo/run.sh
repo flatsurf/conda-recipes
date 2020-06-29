@@ -15,5 +15,8 @@ git submodule foreach git clean -fd
 git submodule foreach git reset --hard
 git diff --exit-code
 
+# Make sure that grep works
+grep style `git grep -l ''` > /dev/null
+
 # Make sure there's no pending todos
-! grep "TO""DO" `git ls-files | grep -v external | grep -v azure-pipelines`
+! grep "TO""DO" `git grep -l ''`
