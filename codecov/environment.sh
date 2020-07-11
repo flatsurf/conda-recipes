@@ -10,12 +10,12 @@ if [[ "$action" == "coverage" ]]; then
   
   set +x
   if [ ${#CODECOV_TOKEN} = 36 ];then
-    echo "${CODECOV_TOKEN}" > ~/.codecov.token
-    export CODECOV_TOKEN=yes
+    echo ":${CODECOV_TOKEN}" > ~/.codecov.token
+    unset CODECOV_TOKEN
     export CODECOV_FLAGS="-t @$HOME/.codecov.token"
   else
     echo "CODECOV_TOKEN not set. Not uploading to codecov."
-    export CODECOV_TOKEN=no
+    unset CODECOV_TOKEN
     export CODECOV_FLAGS="-d"
   fi
   
