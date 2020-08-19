@@ -35,5 +35,6 @@ class AutotoolsDist(Activity):
             make dist
             mv *.tar.gz @(DIRSTACK[-1])
             popd
+        return True
     
 $DAG['dist'] = AutotoolsDist()
