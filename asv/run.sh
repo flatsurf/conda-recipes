@@ -20,7 +20,7 @@ pushd /home/conda/feedstock_root
 
 # Clone performance data of previous runs
 rm -rf .asv/results
-git clone $ASV_GITHUB_REPOSITORY .asv/results
+git clone -b master $ASV_GITHUB_REPOSITORY .asv/results
   
 cp $SNIPPETS_DIR/asv/asv-machine.$CI.json ~/.asv-machine.json
 envsubst < $SNIPPETS_DIR/asv/asv.conf.json > asv.conf.json
@@ -35,9 +35,10 @@ asv run -v --machine=$CI
 pushd .asv/results
 git add .
 git commit -m "Added benchmark run"
+git log --oneline -3
 unset SSH_AUTH_SOCK
 if [[ "$ASV_SECRET_KEY" == "yes" ]]; then
-  git push origin master:master
+  git push origin HEAD:master
 fi
 popd
 
