@@ -35,6 +35,8 @@ asv run -v --machine=$CI
 pushd .asv/results
 git add .
 git commit -m "Added benchmark run"
+git fetch origin
+git rebase origin/master
 git log --oneline -3
 unset SSH_AUTH_SOCK
 if [[ "$ASV_SECRET_KEY" == "yes" ]]; then
