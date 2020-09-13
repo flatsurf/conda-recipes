@@ -20,9 +20,8 @@ esac
 
 case $action in
   test)
-    # Run all test cases
-    make check CXXFLAGS="$CXXFLAGS $EXTRA_CXXFLAGS" || (cat `find . -name 'test-suite*.log'` /dev/null; false)
-    # Run additional tests (might be too slow on non-release builds.)
+    # Run valgrind checks first (might be too slow on non-release builds) so we
+    # understand segfaults before they happen in the full testing below.
     TESTDIRS=${SUBDIRS:-.}
     for subdir in ${TESTDIRS//:/$IFS}; do
         pushd $subdir
@@ -31,6 +30,10 @@ case $action in
         fi
         popd
     done
+
+    # Run all test cases
+    make check CXXFLAGS="$CXXFLAGS $EXTRA_CXXFLAGS" || (cat `find . -name 'test-suite*.log'` /dev/null; false)
+
     make distcheck || (echo | cat `find . -name test-suite.log` /dev/null; false)
     ;;
   coverage)
