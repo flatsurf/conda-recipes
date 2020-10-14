@@ -21,6 +21,6 @@ git fetch origin
 git checkout -b master
 git branch -u origin/master
 
-curl -s https://codecov.io/bash > codecov
+curl -s https://raw.githubusercontent.com/codecov/codecov-bash/7d6e83ddebcc51b837fed33fe4f97670dc480996/codecov > codecov
 chmod +x codecov
 ./codecov $CODECOV_FLAGS -v -R `pwd` -x `which x86_64-conda_cos6-linux-gnu-gcov` -a '\-lrp' -p .
