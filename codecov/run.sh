@@ -23,4 +23,7 @@ git branch -u origin/master
 
 curl -s https://codecov.io/bash > codecov
 chmod +x codecov
+
+set +x
+./codecov -v -d -R `pwd` -x `which x86_64-conda_cos6-linux-gnu-gcov` -g '**/external/**' -g '**/test/**' -g '**/benchmark/**' -g '**/recipe/**' -p .
 ./codecov -v -R `pwd` -x `which x86_64-conda_cos6-linux-gnu-gcov` -g '**/external/**' -g '**/test/**' -g '**/benchmark/**' -g '**/recipe/**' -p .
