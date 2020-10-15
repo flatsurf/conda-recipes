@@ -23,4 +23,4 @@ git branch -u origin/master
 
 curl -s https://codecov.io/bash > codecov
 chmod +x codecov
-./codecov $CODECOV_FLAGS -v -R `pwd` -x `which x86_64-conda_cos6-linux-gnu-gcov` -a '\-lrp' -p .
+./codecov -v -R `pwd` -x `which x86_64-conda_cos6-linux-gnu-gcov` -p .
