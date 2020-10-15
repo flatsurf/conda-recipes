@@ -10,9 +10,6 @@ if [[ "$action" != "coverage" ]]; then
   exit 0
 fi
 
-# Install gcov
-conda install -y --quiet gcc_linux-64
-
 cd $SRC_DIR
 
 git remote remove origin || true
@@ -25,7 +22,7 @@ curl -s https://codecov.io/bash > codecov
 chmod +x codecov
 
 # Delete yaml files that confuse codecov, such as our coverage.yaml
-rm -rf **/*.yaml .**/*.yaml
+rm -rf **/*.yaml .**/*.yaml || true
 
 set +x
-./codecov -R `pwd` -x `which x86_64-conda_cos6-linux-gnu-gcov` -g '**/external/**' -g '**/test/**' -g '**/benchmark/**' -g '**/recipe/**' -p .
+./codecov -R `pwd` -x `which x86_64-conda_cos6-linux-gnu-gcov` -g '**/external/**' -g '**/test/**' -g '**/benchmark/**' -g '**/recipe/**' -a '\-lrp' -p .
