@@ -19,6 +19,8 @@ if [[ "$action" == "style" ]]; then
         exit 0
 fi
 
+export CONFIGURE_FLAGS="$CONFIGURE_FLAGS --with-version-script"
+
 if [[ "$action" == "release" ]]; then
         export CONFIGURE_FLAGS="$CONFIGURE_FLAGS --without-pytest --without-googletest --without-benchmark --without-sage"
 fi
